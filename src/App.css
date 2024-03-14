@@ -20,5 +20,13 @@
   display: flex;
 }
 
+.star {
+  width: 35px;
+  height: 35px;
+  display: block;
+  cursor: pointer;
+  transition: all ease .4s;
+}
+
 
 
