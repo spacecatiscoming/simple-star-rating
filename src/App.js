@@ -9,6 +9,7 @@ export default function App() {
 }
 
 function StarComponent() {
+  // States for click Rating and Hover rating
   const [rating, setRating] = useState(0);
   const [newrating, setNewRating] = useState(0);
 
@@ -19,6 +20,8 @@ function StarComponent() {
   return (
     <div className="container">
       <h1>Star Rating</h1>
+      <h4>Your rating is {rating || newrating} Stars</h4>
+
       <div className="star-container">
         {/* Render Stars with Array.from and map() */}
         {Array.from({ length: maxRating }).map((_, i) => (
@@ -30,9 +33,9 @@ function StarComponent() {
             onMouseOut={() => setNewRating(0)}
           />
         ))}
+        <p>{newrating || rating || ""}</p>
       </div>
       {/* Change our number when we Hover, Click, or Empty String One is True */}
-      <p>{newrating || rating || ""}</p>
     </div>
   );
 }
