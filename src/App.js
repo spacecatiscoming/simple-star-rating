@@ -10,6 +10,7 @@ export default function App() {
 
 function StarComponent() {
   const [rating, setRating] = useState(0);
+  const [newrating, setNewRating] = useState(0);
 
   function handleStarClick(rating) {
     setRating(rating);
@@ -24,20 +25,30 @@ function StarComponent() {
           <Star
             key={i}
             onStarClick={() => handleStarClick(i + 1)}
-            star={rating >= i + 1}
+            star={newrating ? newrating >= i + 1 : rating >= i + 1}
+            onMouseIn={() => setNewRating(i + 1)}
+            onMouseOut={() => setNewRating(0)}
           />
         ))}
       </div>
-      <p>{rating || ""}</p>
+      {/* Change our number when we Hover, Click, or Empty String One is True */}
+      <p>{newrating || rating || ""}</p>
     </div>
   );
 }
 
-function Star({ onStarClick, star }) {
+function Star({ onStarClick, star, onMouseIn, onMouseOut }) {
   return (
     <div>
       {/* Here we put our Star  When {star} is "false" we show Empty Stars, when we click on the stars then our {star} change value to "true" and Show full Star */}
-      <span className="star" role="button" onClick={onStarClick}>
+      <span
+        className="star"
+        role="button"
+        onClick={onStarClick}
+        // On Mouse Functions  Hover over Stars
+        onMouseEnter={onMouseIn}
+        onMouseLeave={onMouseOut}
+      >
         {star ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
